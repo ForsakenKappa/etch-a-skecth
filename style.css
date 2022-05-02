@@ -1,0 +1,53 @@
+div{
+    display: flex;
+    flex-flow: column;
+    align-items:center;
+}
+
+button{
+    border: none;
+    width: 10em;
+    height: 4em;
+    background-color: #bdced5;
+}
+
+
+#tools{
+    flex-flow: row;
+    border: 1px solid black;
+    gap: 13px;
+    background-color: #bdced5
+    
+}
+
+
+#board{
+    border: 8px solid black;
+    width: 48em;
+    height: 48em;
+
+    display: grid;
+}
+
+#grid-size-value{
+    border: 1px solid black;
+}
+
+#color-picker{
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #00000000;
+}
+
+.active{
+    background-color:#f0f8ff8c;
+}
+
+.pixel{
+    align-self: normal;
+}
+
+.grid-pixel{
+    border: 1px solid #00000020;
+}
