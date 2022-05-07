@@ -15,11 +15,27 @@
         </div>
         <div id="inputs">
             <div id="tools"'>
-                <button id="rainbow" class="tool">Rainbow mode</button>
-                <button id="pipette" class="tool">Pipette</button>
-                <button id="eraser" class="tool">Eraser</button>
-                <button id="pen" class="tool active">Pen</button>
-                <button onclick="toggleGrid(this)">Show grid</button>
+
+                <label class="container"> Rainbow mode
+                    <input type="radio" id="rainbow">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container"> Pipette
+                    <input type="radio" id="pipette">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container"> Eraser
+                    <input type="radio" id="eraser">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container"> Pen
+                    <input type="radio" id="pen">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="grid">
+                    <span class="radio"></span>
+                </label>
                 <input type="color" id="color-picker">
             </div>
             <p id="grid-size-value"></p>
