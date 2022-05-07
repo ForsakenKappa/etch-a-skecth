@@ -3,11 +3,12 @@ const gridSizeP = document.querySelector("#grid-size-value");
 const gridSizeInp = document.querySelector("#grid-size-input");
 const colorInp = document.querySelector('#color-picker');
 
-const toolBtns = document.querySelectorAll('.tool');
+const toolBtns = document.getElementsByName('tool');
 
 let gridSize = 16;
 let isDrawing = false;
-let color = 'black';
+let color = 'rgb(0,0,0)';
+let currentTool = 'pen';
 
 gridSizeP.textContent = `${gridSize} x ${gridSize}`;
 gridSizeInp.value = gridSize;
@@ -25,9 +26,47 @@ gridSizeInp.addEventListener('input', function(e){
 toolBtns.forEach(toolBtn => toolBtn.addEventListener('click', handleTools))
 
 function doDrawing(e){
+
     if (isDrawing) {
-        e.target.style.backgroundColor = color;
+        switch (currentTool){
+            case 'pen':
+                e.target.style.backgroundColor = color;
+                break
+            case 'eraser':
+                e.target.style.backgroundColor = '#ffffff';
+                break;
+            case 'pipette':
+                console.log(typeof e.target.style.backgroundColor)
+                colorInp.value = e.target.style.backgroundColor
+
+        }
+        
     }
+    
+}
+
+
+// I need to deal with that "rgb(255,255,255)" somehow
+function convertToHex(string=''){
+    let regexp = /\d+/g
+
+    array = string.matchAll(regexp)
+
+    r = array[0][0]
+    g = array[1][0]
+    b = array[2][0]
+
+    rHex = parseInt(r).toString(16)
+    gHex = parseInt(g).toString(16)
+    bHex = parseInt(b).toString(16)
+
+    rHex = rHex.length > 1? rHex : '0' + rHex
+    gHex = gHex.length > 1? gHex : '0' + gHex
+    bHex = bHex.length > 1? bHex: '0'+ bHex
+
+    //Will be #ffffff
+    return `#${rHex}${gHex}${bHex}`
+
 }
 
 function createGrid(size){
@@ -36,6 +75,7 @@ function createGrid(size){
         let pixel = document.createElement("div");
         pixel.className = 'pixel';
         pixel.id = i;
+        pixel.style.backgroundColor = 'rbg(255,255,255)'
         pixel.addEventListener('mousedown', function(e){
             isDrawing = true
             doDrawing(e)
@@ -49,10 +89,11 @@ function createGrid(size){
 
 function handleTools(e){
 
-    console.log(e);
+    console.log(e.target);
 
-    tool = e.target
-    toolClassList = Array.from(tool.classList)
+    currentTool = e.target.value;
+
+    
 
     
 }
