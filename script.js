@@ -4,6 +4,7 @@ const gridSizeInp = document.querySelector("#grid-size-input");
 const colorInp = document.querySelector('#color-picker');
 
 const toolBtns = document.getElementsByName('tool');
+const toggleGridBtn = document.querySelector('.grid');
 
 let gridSize = 16;
 let isDrawing = false;
@@ -18,12 +19,22 @@ colorInp.addEventListener('change', function(e){
     color = e.target.value
 })
 
+toggleGridBtn.addEventListener('change', function(e){
+    document.querySelectorAll('.pixel').forEach(element => {
+        element.classList.toggle("grid-pixel", e.target.checked)
+    });
+})
+
 gridSizeInp.addEventListener('input', function(e){
     gridSize = e.target.value;
     gridSizeP.textContent = `${gridSize} x ${gridSize}`;
 })
 
-toolBtns.forEach(toolBtn => toolBtn.addEventListener('click', handleTools))
+toolBtns.forEach(toolBtn => toolBtn.addEventListener('change', function(e){
+    console.log(e.target);
+    currentTool = e.target.value;
+}
+))
 
 function doDrawing(e){
 
@@ -75,7 +86,12 @@ function createGrid(size){
 
     for (let i = 0; i < size * size; i++) {
         let pixel = document.createElement("div");
-        pixel.className = 'pixel';
+        
+        if (toggleGridBtn.checked){
+            pixel.classList.add('grid-pixel');
+        }
+
+        pixel.classList.add('pixel');
         pixel.id = i;
         pixel.style.backgroundColor = '#ffffff'
         pixel.addEventListener('mousedown', function(e){
@@ -89,26 +105,6 @@ function createGrid(size){
     }
 }
 
-function handleTools(e){
-
-    console.log(e.target);
-
-    currentTool = e.target.value;
-
-    
-
-    
-}
-
-function toggleGrid(button){
-
-    button.classList.toggle("active");
-
-    document.querySelectorAll('.pixel').forEach(element => {
-        element.classList.toggle("grid-pixel")
-    });
-
-}
 
 function updateGrid(){ 
     console.log(gridSize);

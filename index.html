@@ -18,28 +18,28 @@
 
                 <label class="container"> Rainbow mode
                     <input type="radio" name="tool" value="rainbow">
-                    <span class="checkmark"></span>
+                    <span class="radio"></span>
                 </label>
                 <label class="container"> Pipette
                     <input type="radio" name="tool" value="pipette">
-                    <span class="checkmark"></span>
+                    <span class="radio"></span>
                 </label>
                 <label class="container"> Eraser
                     <input type="radio" name="tool" value="eraser">
-                    <span class="checkmark"></span>
+                    <span class="radio"></span>
                 </label>
                 <label class="container"> Pen
-                    <input type="radio" name="tool" value="pen">
-                    <span class="checkmark"></span>
+                    <input type="radio" name="tool" value="pen" checked="true">
+                    <span class="radio"></span>
                 </label>
                 <label class="container"> Show grid
-                    <input type="checkbox" value="grid">
-                    <span class="radio"></span>
+                    <input type="checkbox" class="grid" value="toggled">
+                    <span class="toggle"></span>
                 </label>
                 <input type="color" id="color-picker">
             </div>
             <p id="grid-size-value"></p>
-            <input type="range" min="2" max="100" value="" step="1" id="grid-size-input">
+            <input type="range" min="8" max="128" value="" step="1" id="grid-size-input">
             <button onclick="updateGrid()">(Re)set grid</button>
         </div>
     </div>
