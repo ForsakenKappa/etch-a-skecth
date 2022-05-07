@@ -7,14 +7,14 @@ const toolBtns = document.getElementsByName('tool');
 
 let gridSize = 16;
 let isDrawing = false;
-let color = 'rgb(0,0,0)';
+let color = '#000000';
 let currentTool = 'pen';
 
 gridSizeP.textContent = `${gridSize} x ${gridSize}`;
 gridSizeInp.value = gridSize;
 updateGrid()
 
-colorInp.addEventListener('input', function(e){
+colorInp.addEventListener('change', function(e){
     color = e.target.value
 })
 
@@ -28,6 +28,8 @@ toolBtns.forEach(toolBtn => toolBtn.addEventListener('click', handleTools))
 function doDrawing(e){
 
     if (isDrawing) {
+        console.log(color);
+        color = colorInp.value;
         switch (currentTool){
             case 'pen':
                 e.target.style.backgroundColor = color;
@@ -36,8 +38,7 @@ function doDrawing(e){
                 e.target.style.backgroundColor = '#ffffff';
                 break;
             case 'pipette':
-                console.log(typeof e.target.style.backgroundColor)
-                colorInp.value = e.target.style.backgroundColor
+                colorInp.value = convertToHex(e.target.style.backgroundColor)
 
         }
         
@@ -50,7 +51,8 @@ function doDrawing(e){
 function convertToHex(string=''){
     let regexp = /\d+/g
 
-    array = string.matchAll(regexp)
+    array = [...string.matchAll(regexp)]
+    console.log(array)
 
     r = array[0][0]
     g = array[1][0]
@@ -75,7 +77,7 @@ function createGrid(size){
         let pixel = document.createElement("div");
         pixel.className = 'pixel';
         pixel.id = i;
-        pixel.style.backgroundColor = 'rbg(255,255,255)'
+        pixel.style.backgroundColor = '#ffffff'
         pixel.addEventListener('mousedown', function(e){
             isDrawing = true
             doDrawing(e)
