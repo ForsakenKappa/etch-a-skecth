@@ -95,11 +95,11 @@ function createGrid(size){
         pixel.id = i;
         pixel.style.backgroundColor = '#ffffff'
         pixel.addEventListener('mousedown', function(e){
-            isDrawing = true
+            isDrawing = !isDrawing
             doDrawing(e)
         })
         pixel.addEventListener('mouseenter', doDrawing)
-        pixel.addEventListener('mouseup', () => isDrawing = false)
+        //pixel.addEventListener('mouseup', () => isDrawing = false)
         divBoard.appendChild(pixel)
 
     }
